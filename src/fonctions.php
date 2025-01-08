@@ -8,6 +8,8 @@ function ipFrance($ip) {
     if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) 
     {
         $requete = $bdd->prepare('SELECT country_code FROM ip2location WHERE ip_from <= :ip AND ip_to >= :ip');
+        $ipLong = Int_ip($ip);
+        $requete->bindParam(':ip', $ipLong, PDO::PARAM_INT);
         $requete->execute();
         $pays = $requete->fetch(PDO::FETCH_ASSOC);
         if ($pays && $pays['country_code'] == 'FR') 
