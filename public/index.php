@@ -1,4 +1,6 @@
 <?php
+require_once './src/france_or_not.php';
+
 // Mesure du temps d'execution
 $index_start = microtime(true);
 
